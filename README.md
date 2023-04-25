@@ -69,6 +69,32 @@ client.create_items(db_name: 'my_test_db', ns_name: 'my_test_namespace', payload
 # Get items
 q = { filter: "id = 'my_id_1' OR id = 'my_id_2'", format: 'json' }
 client.get_items(db_name: 'my_test_db', ns_name: 'my_test_namespace', payload: q)
+
+# Drop items
+items = [{id: "100", title: "Remember"}, {id: "101", title: "Cadia"}].map { |x| x.slice(:id) }.map(&:to_json)
+client.drop_items(db_name: 'my_test_db', ns_name: 'my_test_namespace', payload: items)
+
+
+# Transactions
+
+# Begin tx
+tx_id = client.create_tx(db_name: 'my_test_db', ns_name: 'my_test_namespace').body["tx_id"]
+
+# Create items with tx
+client.create_items_tx(db_name: 'my_test_db', tx_id: tx_id, payload: items)
+
+# Upser items with tx
+client.upsert_items_tx(db_name: 'my_test_db', tx_id: tx_id, payload: items)
+
+# Drop items with tx
+items = [{id: "100", title: "Remember"}, {id: "101", title: "Cadia"}].map { |x| x.slice(:id) }.map(&:to_json)
+client.drop_items_tx(db_name: 'my_test_db', tx_id: tx_id, payload: items)
+
+# Commit tx
+client.commit_tx(db_name: 'my_test_db', tx_id: tx_id)
+
+# Rollback tx
+client.rollback_tx(db_name: 'my_test_db', tx_id: tx_id)
 ```
 
 ## Contributing
