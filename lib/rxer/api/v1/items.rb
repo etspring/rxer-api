@@ -11,6 +11,10 @@ module Rxer
 
         def get_items(db_name:, ns_name:, payload: {})
           get(endpoint: "/api/v1/db/#{db_name}/namespaces/#{ns_name}/items", payload: payload)
+        end
+
+        def drop_items(db_name:, ns_name:, payload:)
+          delete(endpoint: "/api/v1/db/#{db_name}/namespaces/#{ns_name}/items", payload: payload)
         end        
       end
     end
