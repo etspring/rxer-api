@@ -1,4 +1,4 @@
-## [0.4.0] - Index methods added
+## [0.4.0] - Index/Query/Schema methods added
 
 ## [0.3.0] - System methods added
 
