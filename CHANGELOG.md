@@ -1,3 +1,5 @@
+## [0.4.0] - Index methods added
+
 ## [0.3.0] - System methods added
 
 ## [0.2.0] - Transactions added

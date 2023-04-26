@@ -38,7 +38,7 @@ module Rxer
         end
 
         def update_profiling(db_name:, payload:)
-          put(endpoint: "/db/#{db_name}/namespaces/#config/items", payload: payload)
+          put(endpoint: "/api/v1/db/#{db_name}/namespaces/#config/items", payload: payload)
         end
       end
     end

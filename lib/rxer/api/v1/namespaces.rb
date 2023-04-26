@@ -15,12 +15,32 @@ module Rxer
           post(endpoint: "/api/v1/db/#{db_name}/namespaces", payload: namespace)
         end
 
+        def get_namespace(db_name:, namespace:)
+          get(endpoint: "/api/v1/db/#{db_name}/namespaces/#{namespace}")
+        end
+
         def drop_namespace(db_name:, namespace:)
-          delete(endpoint: "/api/v1/db/#{db_name}/#{namespace}")
+          delete(endpoint: "/api/v1/db/#{db_name}/namespaces/#{namespace}")
         end
 
         def truncate_namespace(db_name:, namespace:)
           delete(endpoint: "/api/v1/db/#{db_name}/#{namespace}/truncate")
+        end
+
+        def rename_namespace(db_name:, namespace:, name:)
+          get(endpoint: "/api/v1/db/#{db_name}/namespaces/#{namespace}/rename/#{name}")
+        end
+
+        def get_namespace_metalist(db_name:, namespace:)
+          get(endpoint: "/api/v1/db/#{db_name}/namespaces/#{namespace}/metalist")
+        end
+
+        def get_namespace_meta_by_key(db_name:, namespace:, key:)
+          get(endpoint: "/api/v1/db/#{db_name}/namespaces/#{namespace}/metabykey/#{key}")
+        end
+
+        def update_namespace_meta_key(db_name:, namespace:, payload:)
+          put(endpoint: "/api/v1/db/#{db_name}/namespaces/#{namespace}/metabykey", payload: payload)
         end
       end
     end

@@ -5,7 +5,6 @@ module Rxer
     module V1
       # Working with Transactions
       module Transactions
-
         def create_tx(db_name:, ns_name:)
           post(endpoint: "/api/v1/db/#{db_name}/namespaces/#{ns_name}/transactions/begin", payload: {})
         end
@@ -28,11 +27,11 @@ module Rxer
 
         def update_items_tx(db_name:, tx_id:, payload:)
           put(endpoint: "/api/v1/db/#{db_name}/transactions/#{tx_id}/items", payload: payload)
-        end         
+        end
 
         def drop_items_tx(db_name:, tx_id:, payload:)
           delete(endpoint: "/api/v1/db/#{db_name}/transactions/#{tx_id}/items", payload: payload)
-        end        
+        end
       end
     end
   end
